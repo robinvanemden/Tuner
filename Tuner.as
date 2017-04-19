@@ -29,41 +29,41 @@
 	[SWF(width = '500', height = '300', frameRate = '20', backgroundColor = '0xFFFFFF')]
 	public final class Tuner extends Sprite
 	{
-		private static const MIN_FREQ:Number = 0;				// Minimum frequency (Hz) on horizontal axis.
-		private static const MAX_FREQ:Number = 2000;				// Maximum frequency (Hz) on horizontal axis.
-		private static const FREQ_STEP:Number = 500;				// Interval between ticks (Hz) on horizontal axis.
-		private static const MAX_DB:Number = -0.0;				// Maximum dB magnitude on vertical axis.
-		private static const MIN_DB:Number = -60.0;				// Minimum dB magnitude on vertical axis.
-		private static const DB_STEP:Number = 10;				// Interval between ticks (dB) on vertical axis.
-		private static const TOP:Number = 0;					// Top of graph
-		private static const LEFT:Number = 0;					// Left edge of graph
-		private static const HEIGHT:Number = 299;				// Height of graph
-		private static const WIDTH:Number = 499;				// Width of graph
-		private static const TICK_LEN:Number = 10;				// Length of tick in pixels
-		private static const LABEL_X:String = "Frequency (Hz)";			// Label for X axis
-		private static const LABEL_Y:String = "dB";				// Label for Y axis
+		private static const MIN_FREQ:Number = 0;			// Minimum frequency (Hz) on horizontal axis.
+		private static const MAX_FREQ:Number = 2000;			// Maximum frequency (Hz) on horizontal axis.
+		private static const FREQ_STEP:Number = 500;			// Interval between ticks (Hz) on horizontal axis.
+		private static const MAX_DB:Number = -0.0;			// Maximum dB magnitude on vertical axis.
+		private static const MIN_DB:Number = -60.0;			// Minimum dB magnitude on vertical axis.
+		private static const DB_STEP:Number = 10;			// Interval between ticks (dB) on vertical axis.
+		private static const TOP:Number = 0;				// Top of graph
+		private static const LEFT:Number = 0;				// Left edge of graph
+		private static const HEIGHT:Number = 299;			// Height of graph
+		private static const WIDTH:Number = 499;			// Width of graph
+		private static const TICK_LEN:Number = 10;			// Length of tick in pixels
+		private static const LABEL_X:String = "Frequency (Hz)";		// Label for X axis
+		private static const LABEL_Y:String = "dB";			// Label for Y axis
 		private static const BOTTOM:Number = TOP + HEIGHT;
 		private static const DBTOPIXEL:Number = HEIGHT / (MAX_DB - MIN_DB);
 		private static const FREQTOPIXEL:Number = WIDTH / (MAX_FREQ - MIN_FREQ);
 		private static var y_local:Number;
 		private static var x_local:Number;
 		
-		private static const SAMPLE_RATE:Number = 44100;	// Actual microphone sample rate (Hz)
-		private static const LOGN:uint = 11;			// Log2 FFT length 11 orginal  // 10 == speed, maar niet voor lage tonen
-		private static const N:uint = 1 << LOGN;		// FFT Length
-		private static const BUF_LEN:uint = N;			// Length of buffer for mic audio
-		private static const UPDATE_PERIOD:int = 100;           // Period of spectrum updates (ms)
+		private static const SAMPLE_RATE:Number = 44100;		// Actual microphone sample rate (Hz)
+		private static const LOGN:uint = 11;				// Log2 FFT length 11 orginal  // 10 == speed, maar niet voor lage tonen
+		private static const N:uint = 1 << LOGN;			// FFT Length
+		private static const BUF_LEN:uint = N;				// Length of buffer for mic audio
+		private static const UPDATE_PERIOD:int = 100;			// Period of spectrum updates (ms)
 		
-		private static var m_tempRe:Vector.<Number>;		// Temporary buffer - real part
-		private static var m_tempIm:Vector.<Number>;		// Temporary buffer - imaginary part
-		private static var m_mag:Vector.<Number>;		// Magnitudes (at each of the frequencies below)
-		private static var m_freq:Vector.<Number>;		// Frequencies (for each of the magnitudes above)
-		private static var m_win:Vector.<Number>;		// Analysis window (Hanning)
+		private static var m_tempRe:Vector.<Number>;			// Temporary buffer - real part
+		private static var m_tempIm:Vector.<Number>;			// Temporary buffer - imaginary part
+		private static var m_mag:Vector.<Number>;			// Magnitudes (at each of the frequencies below)
+		private static var m_freq:Vector.<Number>;			// Frequencies (for each of the magnitudes above)
+		private static var m_win:Vector.<Number>;			// Analysis window (Hanning)
 		
-		private static var m_mic:Microphone;			// Microphone object
-		private static var m_writePos:uint = 0;			// Position to write new audio from mic
-		private static var m_buf:Vector.<Number> = null;	// Buffer for mic audio
-		private static var m_timer:Timer;			// Timer for updating spectrum
+		private static var m_mic:Microphone;				// Microphone object
+		private static var m_writePos:uint = 0;				// Position to write new audio from mic
+		private static var m_buf:Vector.<Number> = null;		// Buffer for mic audio
+		private static var m_timer:Timer;				// Timer for updating spectrum
 		
 		// All defined as private static for max ActionScript speed:
 		
