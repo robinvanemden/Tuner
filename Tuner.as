@@ -67,6 +67,9 @@
 		
 		// All defined as private static for max ActionScript speed:
 		
+		private static var crossings:int;
+    	private static var lastSample:Number;		
+		private static var pos:uint;
 		private static var len:int;
 		private static var sampleLen:uint = 0;
 		private static var lastSampleLen:uint = 0;		
@@ -156,8 +159,7 @@
 
 		}
 
-
-    	private function normaliseFreq(hz:Number):Number {
+		private function normaliseFreq(hz:Number):Number {
 			while ( hz < 82.41 ) {
 				hz = hz << 1; //*2;
 			}
@@ -184,9 +186,6 @@
 			return minFreq;
     	}
 		
-		
-		
-
 		private function onMicSampleData( event:SampleDataEvent ):void
 		{
 			event.stopPropagation();
@@ -203,10 +202,6 @@
 			
 		}
 		
-   		private static var crossings:int;
-    	private static var lastSample:Number;		
-		
-		private static var pos:uint;
 		private function updateSpectrum( event:Event ):void
 		{
 			
