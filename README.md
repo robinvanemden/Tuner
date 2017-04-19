@@ -16,5 +16,6 @@ and indicates the wavelength of the overall frequency.
 
 Optimized for speed.
 
+<kbd>
 ![Alt text](https://raw.githubusercontent.com/robinvanemden/Tuner/master/TunerScreen.gif?raw=true "screenshot")
-
+</kbd>
